@@ -1,4 +1,4 @@
-# DeepProtect: Proactive Face-Swapping Defense Using Identity Blending and Attribute Distortion (CVPR 26)
+# DeepProtect: Proactive Face-Swapping Defense Using Identity Blending and Attribute Distortion
 
 Eungi Lee, Seung-hyeok Back, Hyung-Il Kim, Seok Bong Yoo
 
