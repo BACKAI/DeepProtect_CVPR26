@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+outputs/
+checkpoints/
+pretrained_models/
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.pkl
+
