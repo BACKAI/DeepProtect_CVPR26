@@ -1,4 +1,4 @@
-# DeepProtect: Proactive Face-Swapping Defense Using Identity Blending and Attribute Distortion
+# DeepProtect: Proactive Face-Swapping Defense Using Identity Blending and Attribute Distortion (CVPR 2026 - "CVPR Compute Gold Star!!")
 
 This directory is an independent, runnable implementation of:
 
