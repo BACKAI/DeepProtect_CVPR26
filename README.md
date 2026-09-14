@@ -42,7 +42,7 @@ The default watermark budget is `ε=0.02` in `[0,1]` image space, as reported in
 ## Repository layout
 
 ```text
-DeepProtect_real/
+DeepProtect_CVPR26/
 ├── deep_protect/
 │   ├── blending.py             # W+ retrieval and identity blending, Eqs. (1)–(2)
 │   ├── feature_bank.py         # HDF5/NPZ bank I/O
@@ -67,7 +67,8 @@ DeepProtect_real/
 Linux, Python 3.10 or newer, and an NVIDIA GPU with a CUDA-compatible PyTorch build are recommended. CPU execution is supported for smoke tests but is not practical for 1024×1024 StyleGAN/e4e optimization.
 
 ```bash
-cd /var/tmp/jnuadmin_storage/shback/z_paper/DeepProtect/DeepProtect_real
+git clone <REPOSITORY_URL>
+cd DeepProtect_CVPR26
 python3 -m venv .venv
 source .venv/bin/activate
 
@@ -105,20 +106,20 @@ Input images must be RGB, tightly aligned to the FFHQ convention, and nominally 
 
 ```bash
 python scripts/align_faces.py \
-  --input-dir /data/raw_faces \
-  --output-dir /data/aligned_faces \
-  --shape-predictor /models/shape_predictor_68_face_landmarks.dat
+  --input-dir <DATA_ROOT>/raw_faces \
+  --output-dir <DATA_ROOT>/aligned_faces \
+  --shape-predictor <MODEL_ROOT>/shape_predictor_68_face_landmarks.dat
 ```
 
 Build the bank by selecting one deterministic image per identity directory. For the paper setting, `--max-identities` remains 4605:
 
 ```bash
 python scripts/build_feature_bank.py \
-  --images /data/VGGFace2-HQ/aligned \
-  --output /data/banks/vggface2_hq_4605.h5 \
-  --e4e /models/e4e_ffhq_encode.pt \
-  --arcface /models/arcface_checkpoint.tar \
-  --farl /models/FaRL-Base-Patch16-LAIONFace20M-ep64.pth \
+  --images <DATA_ROOT>/VGGFace2-HQ/aligned \
+  --output <DATA_ROOT>/banks/vggface2_hq_4605.h5 \
+  --e4e <MODEL_ROOT>/e4e_ffhq_encode.pt \
+  --arcface <MODEL_ROOT>/arcface_checkpoint.tar \
+  --farl <MODEL_ROOT>/FaRL-Base-Patch16-LAIONFace20M-ep64.pth \
   --max-identities 4605 \
   --batch-size 8
 ```
@@ -140,13 +141,13 @@ The default `combined` mode performs the complete paper pipeline: e4e encoding, 
 
 ```bash
 python scripts/inference.py \
-  --image /data/aligned_faces/person_0001.jpg \
+  --image <DATA_ROOT>/aligned_faces/person_0001.jpg \
   --output-dir outputs/person_0001 \
-  --feature-bank /data/banks/vggface2_hq_4605.h5 \
-  --stylegan /models/ffhq.pkl \
-  --e4e /models/e4e_ffhq_encode.pt \
-  --arcface /models/arcface_checkpoint.tar \
-  --farl /models/FaRL-Base-Patch16-LAIONFace20M-ep64.pth \
+  --feature-bank <DATA_ROOT>/banks/vggface2_hq_4605.h5 \
+  --stylegan <MODEL_ROOT>/ffhq.pkl \
+  --e4e <MODEL_ROOT>/e4e_ffhq_encode.pt \
+  --arcface <MODEL_ROOT>/arcface_checkpoint.tar \
+  --farl <MODEL_ROOT>/FaRL-Base-Patch16-LAIONFace20M-ep64.pth \
   --prompt nose
 ```
 
@@ -168,13 +169,13 @@ DeepProtect does not train a new universal network. Its “training” is the pe
 
 ```bash
 python scripts/train.py \
-  --input-dir /data/CelebA-HQ/aligned \
+  --input-dir <DATA_ROOT>/CelebA-HQ/aligned \
   --output-dir outputs/celeba_hq \
-  --feature-bank /data/banks/vggface2_hq_4605.h5 \
-  --stylegan /models/ffhq.pkl \
-  --e4e /models/e4e_ffhq_encode.pt \
-  --arcface /models/arcface_checkpoint.tar \
-  --farl /models/FaRL-Base-Patch16-LAIONFace20M-ep64.pth \
+  --feature-bank <DATA_ROOT>/banks/vggface2_hq_4605.h5 \
+  --stylegan <MODEL_ROOT>/ffhq.pkl \
+  --e4e <MODEL_ROOT>/e4e_ffhq_encode.pt \
+  --arcface <MODEL_ROOT>/arcface_checkpoint.tar \
+  --farl <MODEL_ROOT>/FaRL-Base-Patch16-LAIONFace20M-ep64.pth \
   --prompt nose \
   --max-images 1000
 ```
