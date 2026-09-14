@@ -13,7 +13,7 @@ Face-swapping deepfakes allow realistic identity transfer, which can serve creat
 
 
 <p align="center">
-  <img src="assets/overview.jpg" width="95%">
+  <img src="assets/overview.jpg" width="75%">
 </p>
 
 <p align="center">
