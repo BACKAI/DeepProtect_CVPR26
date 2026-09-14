@@ -183,6 +183,7 @@ Each image gets an independent LoRA state and metadata record. The base FFHQ Sty
 
 Important defaults from the paper are exposed as CLI/config values: `tau=0.75`, `m=30`, `lambda_R=1`, style indices `2:7`, LoRA rank `8`, learning rate `3e-4`, identity-lock weight `0.1`, maximum generator steps `450`, LPIPS threshold `0.06`, watermark `epsilon=0.02`, and prompt `nose`.
 
+<!--
 ## Evaluation protocol
 
 For source fidelity, compare the original aligned source and `protected.png` with PSNR and SSIM; compute ISM with the same ArcFace encoder. For defense, run the original and protected source through the same face-swapping model and compare the resulting deepfakes with PSNR/SSIM and DSR. The paper also reports PDS, the SSIM difference between source/protected pairs and their corresponding deepfakes. Use identical source images, target identities, preprocessing, and random seeds for both conditions. This repository intentionally does not bundle third-party face-swapping models or their datasets.
@@ -196,15 +197,16 @@ The paper reports the following headline combined-method results: on CelebA-HQ, 
 - Feature-bank construction is expensive because each bank identity is encoded with e4e, FaRL, and ArcFace. Build it once and reuse it.
 - Generator optimization is differentiable and uses a frozen ArcFace surrogate; the face-swapping model itself remains black-box during protection.
 - The `torch_utils/`, `networks.py`, and `models/e4e/` files are included only so this folder can run independently. The old `DeepProtect_CVPR26-main` folder is not modified.
+-->
 
 ## Citation
 
 ```bibtex
 @inproceedings{lee2026deepprotect,
-  title     = {DeepProtect: Proactive Face-Swapping Defense using Identity Blending and Attribute Distortion},
-  author    = {Lee, Eungi and Back, Seung-hyeok and Kim, Hyung-Il and Yoo, Seok Bong},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year      = {2026},
-  note      = {Accepted to CVPR 2026; proceedings version pending publication}
+  title={DeepProtect: Proactive Face-Swapping Defense using Identity Blending and Attribute Distortion},
+  author={Lee, Eungi and Back, Seung-hyeok and Kim, Hyung-Il and Yoo, Seok Bong},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={6569--6579},
+  year={2026}
 }
 ```
