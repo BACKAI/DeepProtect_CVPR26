@@ -9,7 +9,7 @@ This directory is an independent, runnable implementation of:
 
 
 <p align="center">
-  <img src="assets/overview.png" width="95%">
+  <img src="assets/overview.jpg" width="95%">
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@ This directory is an independent, runnable implementation of:
 
 
 <p align="center">
-  <img src="assets/results.png" width="95%">
+  <img src="assets/results.jpg" width="95%">
 </p>
 
 <p align="center">
